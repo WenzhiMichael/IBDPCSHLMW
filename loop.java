@@ -1,15 +1,15 @@
 public class loop {
-    public static void main (String [] args ) {
+    public static  void main (String [] args){
 
-        //Statement 1 is executed (one time) before the execution of the code block.
-        //Statement 2 defines the condition for executing the code block.
-        //Statement 3 is executed (every time) after the code block has been executed.
+        int i = 0;
+        do {
+            System.out.println(i);
 
-        for(int a = 1000; a >= 0 ; a= a -2){
-            System.out.println(a);
-    }
+            System.out.println("The loop is finished.");
+        }
 
-        System.out.println("Loop is finished");
+        while (i < 5);
+       // System.out.println("The loop is finished.");
     }
 
 }

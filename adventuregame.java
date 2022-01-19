@@ -53,7 +53,7 @@ public class adventuregame {
             System.out.println("------------------------------------------------------------------");
             //Starting to explain the environment of the game.
 
-            String input = in.nextInt();
+            String input = in.nextLine();
             if (input.equals("1")) {
                 System.out.println("------------------------------------------------------------------");
                 int enemyHealth = rand.nextInt(maxEnemyHealth);
@@ -69,7 +69,7 @@ public class adventuregame {
                     System.out.println("\t3: Run!");
                 }
 
-                String input = in.nextInt();
+                String input = in.nextLine();
                 if (input.equals("1")) {
                     int damageDealt = rand.nextInt(maxPlayerAttackDamage);
                     int damageTaken = rand.nextInt(maxEnemyAttackDamage);

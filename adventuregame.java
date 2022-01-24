@@ -1,7 +1,7 @@
 import java.util.Scanner;
 import java.util.Random;
 
-public class adventuregame {
+public class advantagegama {
     public static void main(String[] args) {
 
         // system objects
@@ -10,64 +10,39 @@ public class adventuregame {
 
         //Game variables
         String[] enemies = {"Ghast", "Zombie", "Slime", "Skeleton", "Enderman",}; // Set enemy variables
-        int maxEnemyHealth = 75;  // set max enemy health
-        int maxEnemyAttackDamage = 20;  // set max enemy attack damage
+        int maxEnemyHealth = 100;  // set max enemy health
+        int maxEnemyAttackDamage = 40;  // set max enemy attack damage
 
-        //Player vaiables
-        int PlayerHealth = 200;  // set max player health
+        //Player variables
+        int PlayerHealth = 150;  // set max player health
         int maxPlayerAttackDamage = 50;  // set max player attack damage
         int healthyPotions = 1;  // set starting game of amount of healthyPotions give to the players
-        int healthPotionHeal = 50; // set amount of health potion can be healed but still it random between 1-50
-        int dropHealthPotion = 75; // percentage
-        String Username;
+        int healthPotionHeal = 50; // set amount of health potion can be healed
+        int dropHealthPotion = 20; // percentage
 
         boolean running = true; //helping the while loop.
 
         //Main game
         System.out.println("------------------------------");
         System.out.println("Welcome to Adventure Game.");  // Introduction of the game
-
-        System.out.println("Please enter your name:");
-        Scanner input = new Scanner(System.in);
-        Username = input.next();                         // This is part is ask for users name
-
-
-        System.out.println("Hello " + Username + ". Your HP is: " + PlayerHealth + ", let's start the game!");  // Welcome sentence
+        System.out.println("Hello warrior, Your current HP is: " + PlayerHealth + ", let's start the game!");  // Welcome sentence
 
         GAME:
         // The game is set for the first while loop
         while (running) {    //while loop to run the game
-            System.out.println("------------------------------------------------------------------");
-            System.out.println("You are in the middle of the building.");
-            System.out.println("There are 5 rooms in front of you.");
-            System.out.println("");
-            System.out.println("What do you want to do?");
-            System.out.println("");
-            System.out.println("\t1: Room 1");
-            System.out.println("\t2: Room 2");
-            System.out.println("\t3: Room 3");
-            System.out.println("\t4: Room 4");
-            System.out.println("\t5: Room 5");
-            System.out.println("\t6: Room 6");
-            System.out.println("\t7: Room 7");
-            System.out.println("------------------------------------------------------------------");
-            //Starting to explain the environment of the game.
+            System.out.println("------------------------------");
 
-            String input = in.nextLine();
-            if (input.equals("1")) {
-                System.out.println("------------------------------------------------------------------");
-                int enemyHealth = rand.nextInt(maxEnemyHealth);
-                String enemy = enemies[rand.nextInt(enemies.length)];
-                System.out.println("\t#" + enemy + " has appeared! #\n");
+            int enemyHealth = rand.nextInt(maxEnemyHealth);
+            String enemy = enemies[rand.nextInt(enemies.length)];
+            System.out.println("\t#" + enemy + " appeared! #\n");
 
-                while (enemyHealth > 0) {
-                    System.out.println("\tYour HP: " + PlayerHealth + ".");
-                    System.out.println("\t" + enemy + "'s HP is : " + enemyHealth + ".");
-                    System.out.println("\n\tWhat would you like to do?");
-                    System.out.println("\t1: Attack!");
-                    System.out.println("\t2: Drink health potion.");
-                    System.out.println("\t3: Run!");
-                }
+            while (enemyHealth > 0) {
+                System.out.println("\tYour Hp:" + PlayerHealth);
+                System.out.println("\t" + enemy + "'s HP:" + enemyHealth);
+                System.out.println("\n\tWhat would you like to do?");
+                System.out.println("\t1.Attack");
+                System.out.println("\t2.Drink health potion");
+                System.out.println("\t3.Leave!");
 
                 String input = in.nextLine();
                 if (input.equals("1")) {
@@ -77,13 +52,24 @@ public class adventuregame {
                     enemyHealth -= damageDealt;
                     PlayerHealth -= damageTaken;
 
-                    System.out.println("------------------------------------------------------------------");
-                    System.out.println("\t> Your strike the " + enemy + " for " + damageDealt + " damage.");
-                    System.out.println("\t> Your receive " + damageTaken + " damage from " + enemy + " .");
+                    System.out.println("------------------------------");
+                    System.out.println("\t> You strike the " + enemy + " for " + damageDealt + " HP damage.");
+                    System.out.println("\t> You receive the damage is " + damageTaken + " HP. From the " + enemy + " .");
 
-                    if (PlayerHealth < 1) {
-                        System.out.println("------------------------------------------------------------------");
-                        System.out.println("\t You have taken too much damage, you are too weak to go on!");
+
+                    if (PlayerHealth < 1 && healthyPotions > 0) {
+                        PlayerHealth += healthPotionHeal;
+                        System.out.println("------------------------------");
+                        System.out.println("\t> You have taken too much damage, you are too weak to go on. But you have "
+                                + healthyPotions + " health potions left. Now you current HP is " + PlayerHealth + ".");
+                        healthyPotions--;
+                        System.out.println("\t>After you used one health potions, now you have " + healthyPotions + " left.");
+                        continue;
+                    }
+                    else if (PlayerHealth < 1 && healthyPotions < 0) {
+                        PlayerHealth += healthPotionHeal;
+                        System.out.println("------------------------------");
+                        System.out.println("\t> You have taken too much damage, you are too weak to go on.");
                         break;
                     }
                 }
@@ -91,54 +77,74 @@ public class adventuregame {
                 else if (input.equals("2")) {
                         if (healthyPotions > 0) {
                             PlayerHealth += healthPotionHeal;
-                            healthyPotions--;
+                            healthyPotions --;
 
-                            System.out.println("------------------------------------------------------------------");
-                            System.out.println("\t> Your drink a health potion, healing yourself for " + healthPotionHeal +
-                                    " . Now your total health is " + PlayerHealth + " hp." + "You have " + healthyPotions + " health potion/s left.");
-
+                            System.out.println("------------------------------");
+                            System.out.println("\t> You drink a health potion, healing yourself for " + healthPotionHeal +  "HP."
+                                                + "\n\t> You have " + healthyPotions + " health potions left.\n");
                         }
-                        else{
-                            System.out.println("------------------------------------------------------------------");
-                            System.out.println("\t> You have no health potion left! Defeat an enemies for a change to get one! \n");
+                        else {
+                            System.out.println("------------------------------");
+                            System.out.println("\t> You have no health potions left! Defeat enemies for a change to get one!");
                         }
-                }
+                        continue;
+                    }
 
-                else if (input.equals("3")){
-
-                }
+                else if (
+                        input.equals("3")) {
+                        System.out.println("------------------------------");
+                        System.out.println("\tYou run away from the " + enemy + "!");
+                        continue GAME;
+                        }
 
                 else {
+                        System.out.println("------------------------------");
+                        System.out.println("\tInvalid command!");
+                        }
                 }
+
+            if(PlayerHealth < 1){
+                System.out.println("------------------------------");
+                System.out.println("Your limp out of the dungeon, weak from battle.");
+                break;
             }
 
-            else if (input.equals("2")) {
+            System.out.println("------------------------------");
+            System.out.println(" # " + enemy + " was defeated! #");
+            System.out.println(" #  You have " + PlayerHealth + " HP left. #");
 
+            if(rand.nextInt(100)< dropHealthPotion){
+                healthyPotions++;
+                System.out.println("------------------------------");
+                System.out.println(" # The " + enemy + " dropped a health potion! #");
+                System.out.println(" # You have " + healthyPotions + " health potions. #");
             }
 
-            else if (input.equals("3")) {
+            System.out.println("------------------------------");
+            System.out.println("What would you like to now?");
+            System.out.println("1. Continue fighting.");
+            System.out.println("2. Exit dungeon.");
 
-                }
+            String input = in.nextLine();
 
-            else if (input.equals("4")) {
+            while (! input.equals("1") && !input.equals("2")){
+                System.out.println("------------------------------");
+                System.out.println("Invalid command!");
+                input=in.nextLine();
+            }
 
-                }
-
-            else if (input.equals("5")) {
-
-                }
-
-            else if (input.equals("6")) {
-
-                }
-
-            else if (input.equals("7")) {
-
-                }
-
-            else {
-                }
-
+            if(input.equals("1")){
+                System.out.println("------------------------------");
+                System.out.println("You continue on your adventure.");
+            }
+            else if(input.equals("2")){
+                System.out.println("------------------------------");
+                System.out.println("You exit the dungeon, successful from your adventure!");
+                break;
             }
         }
+        System.out.println("------------------------------");
+        System.out.println("# THANKS FOR PLAYING! #");
+        System.out.println("------------------------------");
     }
+}

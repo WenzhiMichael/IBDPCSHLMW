@@ -34,7 +34,7 @@ public class advantagegama {
         System.out.println("                                       ");
         System.out.println( "His slippery fingers strangle the revolver, it wiggles like a loose tooth and in a pale flash is freed " );
         System.out.println( "from the stone. Mad laughter echoes into the night sky as Dudley twirls his prize on the end of his trigger finger." );
-        System.out.println(" Aiming at the ground Dudley fires three times, each shot lifting him higher and higher into the sky. " );
+        System.out.println("Aiming at the ground Dudley fires three times, each shot lifting him higher and higher into the sky. " );
         System.out.println("The cylinder cycles but never empties Landing on his back Dudley stares at the wicked weapon in his gnarled hands. " );
         System.out.println("He knows that the revenge he promised those who betrayed him would finally be fulfilled. The only question " );
         System.out.println( "is who first and how bad was he gonna make 'em hurt? .");  // Introduction of the game
